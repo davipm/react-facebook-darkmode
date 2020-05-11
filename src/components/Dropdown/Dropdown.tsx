@@ -9,6 +9,7 @@ import { CSSTransition } from "react-transition-group";
 import { NavContext } from "../Navbar/NavbarContext";
 import DropdownItem from "./DropdownItem";
 import Menu from "./Menu";
+import Checkbox from "../Checkbox";
 
 function Dropdown() {
   const [activeMenu, setActiveMenu] = useState("main");
@@ -18,16 +19,20 @@ function Dropdown() {
 
   useEffect(() => {
     setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
+  }, []);
 
+  useEffect(() => {
     window.addEventListener("click", closeDropdown);
-    return () => window.removeEventListener("click", closeDropdown);
+    return () => {
+      window.removeEventListener("click", closeDropdown);
+    };
   }, []);
 
   // TODO: get this value dynamic
   function calcHeight(el: HTMLElement) {
     switch (activeMenu) {
       case "main":
-        setMenuHeight(180);
+        setMenuHeight(245);
         break;
       case "settings":
         setMenuHeight(300);
@@ -73,6 +78,9 @@ function Dropdown() {
             setActiveMenu={(event) => setActiveMenu(event)}
           >
             Items
+          </DropdownItem>
+          <DropdownItem leftIcon={<CogIcon />} rightIcon={<Checkbox />}>
+            Dark Mode
           </DropdownItem>
         </Menu>
       </CSSTransition>
