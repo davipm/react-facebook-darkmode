@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ReactComponent as PlusIcon } from "./assets/icons/plus.svg";
+import { ReactComponent as BellIcon } from "./assets/icons/bell.svg";
+import { ReactComponent as MessageIcon } from "./assets/icons/messenger.svg";
+import { ReactComponent as CaretIcon } from "./assets/icons/caret.svg";
+
+import Global from "./styles/Global";
+
+import Navbar from "./components/Navbar";
+import NavItem from "./components/Navbar/NavItem";
+import Dropdown from "./components/Dropdown";
+import NavbarContext from "./components/Navbar/NavbarContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavbarContext>
+        <Navbar>
+          <NavItem icon={<PlusIcon />} />
+          <NavItem icon={<MessageIcon />} />
+          <NavItem icon={<BellIcon />} />
+
+          <NavItem icon={<CaretIcon />}>
+            <Dropdown />
+          </NavItem>
+        </Navbar>
+      </NavbarContext>
+
+      <Global />
+    </>
   );
 }
 
