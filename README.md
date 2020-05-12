@@ -1,3 +1,12 @@
+# Facebook menu with Dark Mode and animations
+
+New Facebook menu dropdown with Dark Mode persistent and animations.
+demo available here: [Demo](https://facebookdropdown.now.sh/) 
+
+## Authors
+
+* **Davi Pereira**
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
