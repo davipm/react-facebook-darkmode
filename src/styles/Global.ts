@@ -2,20 +2,17 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    --bg: #242526;
-    --bg-accent: #484a4d;
-    --text-color: #dadce1;
     --nav-size: 60px;
     --border: 1px solid #484a4d;
     --border-radius: 8px;
     --speed: 500ms;
   }
-  
+    
   body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-color: #151616;
+    background-color: ${(props) => props.theme.colors.bgColor};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -27,7 +24,7 @@ export default createGlobalStyle`
   }
   
   a {
-    color: var(--text-color);
+    color: ${(props) => props.theme.colors.textColor};
     text-decoration: none;
   }
 `;

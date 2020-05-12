@@ -24,8 +24,11 @@ const Wrapper = styled.nav`
   align-items: center;
   padding: 0 1rem;
   height: var(--nav-size);
-  background-color: var(--bg);
-  border-bottom: var(--border);
+  background-color: ${(props) => props.theme.colors.primary};
+  ${(props) =>
+    props.theme.title === "dark"
+      ? `border-bottom: var(--border);`
+      : `box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);`}
 `;
 
 const NavBarNav = styled.ul`

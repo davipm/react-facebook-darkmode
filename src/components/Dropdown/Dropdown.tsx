@@ -11,7 +11,11 @@ import DropdownItem from "./DropdownItem";
 import Menu from "./Menu";
 import Checkbox from "../Checkbox";
 
-function Dropdown() {
+interface IDropdown {
+  toggleDark?(): void;
+}
+
+function Dropdown({ toggleDark }: IDropdown) {
   const [activeMenu, setActiveMenu] = useState("main");
   const [menuHeight, setMenuHeight] = useState<any>(null);
   const dropdownRef = useRef<any>(null);
@@ -19,13 +23,9 @@ function Dropdown() {
 
   useEffect(() => {
     setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
-  }, []);
 
-  useEffect(() => {
     window.addEventListener("click", closeDropdown);
-    return () => {
-      window.removeEventListener("click", closeDropdown);
-    };
+    return () => window.removeEventListener("click", closeDropdown);
   }, []);
 
   // TODO: get this value dynamic
@@ -79,7 +79,10 @@ function Dropdown() {
           >
             Items
           </DropdownItem>
-          <DropdownItem leftIcon={<CogIcon />} rightIcon={<Checkbox />}>
+          <DropdownItem
+            leftIcon={<CogIcon />}
+            rightIcon={<Checkbox toggleDark={toggleDark} />}
+          >
             Dark Mode
           </DropdownItem>
         </Menu>
@@ -140,7 +143,7 @@ const Wrapper = styled.div`
   width: 300px;
   padding: 1rem;
   transform: translateX(-45%);
-  background-color: var(--bg);
+  background-color: ${(props) => props.theme.colors.primary};
   border: var(--border);
   border-radius: var(--border-radius);
   transition: height var(--speed) ease;

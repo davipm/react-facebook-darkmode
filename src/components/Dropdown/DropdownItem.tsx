@@ -36,7 +36,7 @@ export const MenuItem = styled.button`
   width: 100%;
   height: 60px;
   font-size: 1rem;
-  color: var(--text-color);
+  color: ${(props) => props.theme.colors.textColor};
   border: 0;
   background-color: transparent;
   border-radius: var(--border-radius);

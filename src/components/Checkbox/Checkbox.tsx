@@ -1,13 +1,20 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useContext } from "react";
+import styled, { ThemeContext } from "styled-components";
 
-function Checkbox() {
+interface ICheckbox {
+  toggleDark?(): void;
+}
+
+function Checkbox({ toggleDark }: ICheckbox) {
+  const { title } = useContext(ThemeContext);
+
   return (
     <>
       <InputDarkMode
         type="checkbox"
         id="darkmode"
-        onChange={(event) => console.log(event.target.checked)}
+        onChange={toggleDark}
+        checked={title === "dark"}
       />
       <LabelDarkMode htmlFor="darkmode" />
     </>

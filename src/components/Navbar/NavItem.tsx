@@ -37,7 +37,7 @@ export const NavButton = styled.button`
   height: var(--button-size);
   margin: 2px;
   padding: 5px;
-  background-color: var(--bg-accent);
+  background-color: ${(props) => props.theme.colors.bgColor};
   border: 0;
   border-radius: 50%;
   transition: filter 300ms;
@@ -49,7 +49,7 @@ export const NavButton = styled.button`
   }
 
   svg {
-    fill: var(--text-color);
+    fill: ${(props) => props.theme.colors.textColor};
     width: 20px;
     height: 20px;
   }
