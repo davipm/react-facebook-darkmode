@@ -1,33 +1,5 @@
-import React from "react";
 import styled from "styled-components";
-
-import { NavButton } from "../Navbar/NavItem";
-
-interface IDropdownItem {
-  leftIcon?: JSX.Element;
-  rightIcon?: JSX.Element;
-  goToMenu?: string;
-  children?: any;
-  setActiveMenu?(menu: any): any;
-}
-
-function DropdownItem({
-  leftIcon,
-  rightIcon,
-  children,
-  goToMenu,
-  setActiveMenu,
-}: IDropdownItem) {
-  return (
-    <MenuItem onClick={() => goToMenu && setActiveMenu!(goToMenu)}>
-      <NavButton as="span">{leftIcon}</NavButton>
-      {children}
-      <span className="icon-right">{rightIcon}</span>
-    </MenuItem>
-  );
-}
-
-export default DropdownItem;
+import { NavButton } from "../../Navbar/NavItem/styles";
 
 export const MenuItem = styled.button`
   display: flex;
@@ -59,7 +31,8 @@ export const MenuItem = styled.button`
   }
 
   &:hover {
-    background-color: #525357;
+    color: ${(props) => props.theme.colors.primary};
+    background-color: ${(props) => props.theme.colors.textColor};
   }
 
   .icon-right {
