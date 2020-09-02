@@ -1,31 +1,6 @@
-import React, { useContext } from "react";
-import styled, { ThemeContext } from "styled-components";
+import styled from "styled-components";
 
-interface ICheckbox {
-  toggleDark?(): void;
-}
-
-function Checkbox({ toggleDark }: ICheckbox) {
-  const { title } = useContext(ThemeContext);
-
-  return (
-    <>
-      <InputDarkMode
-        type="checkbox"
-        id="darkmode"
-        onChange={toggleDark}
-        checked={title === "dark"}
-      />
-      <LabelDarkMode htmlFor="darkmode" />
-    </>
-  );
-}
-
-export default Checkbox;
-
-const LabelDarkMode = styled.label``;
-
-const InputDarkMode = styled.input`
+export const InputDarkMode = styled.input`
   display: none;
 
   &,
@@ -34,14 +9,14 @@ const InputDarkMode = styled.input`
   & *,
   & *::before,
   & *::after,
-  & + ${LabelDarkMode} {
+  & + label {
     box-sizing: border-box;
     &::selection {
       background: none;
     }
   }
 
-  & + ${LabelDarkMode} {
+  & + label {
     display: block;
     outline: 0;
     width: 4em;
@@ -68,11 +43,11 @@ const InputDarkMode = styled.input`
     }
   }
 
-  &:checked + ${LabelDarkMode}::after {
+  &:checked + label::after {
     left: 50%;
   }
 
-  & + ${LabelDarkMode} {
+  & + label {
     background: #828282;
     border-radius: 2em;
     padding: 2px;
@@ -85,7 +60,7 @@ const InputDarkMode = styled.input`
     }
   }
 
-  &:hover + ${LabelDarkMode} {
+  &:hover + label {
     will-change: padding;
   }
 
@@ -96,7 +71,7 @@ const InputDarkMode = styled.input`
     }
   }
 
-  &:checked + ${LabelDarkMode} {
+  &:checked + label {
     background-color: #3578e5;
     &:active {
       box-shadow: none;
