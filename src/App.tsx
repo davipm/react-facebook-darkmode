@@ -10,7 +10,7 @@ import usePersistedState from "./utils/usePesistedState";
 import light from "./styles/themes/light";
 import dark from "./styles/themes/dark";
 
-import Global from "./styles/Global";
+import Global from "./styles/global";
 
 import Navbar from "./components/Navbar";
 import NavItem from "./components/Navbar/NavItem";

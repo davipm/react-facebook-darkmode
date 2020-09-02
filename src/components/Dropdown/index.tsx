@@ -1,15 +1,16 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ReactComponent as CogIcon } from "../../assets/icons/cog.svg";
 import { ReactComponent as ChevronIcon } from "../../assets/icons/chevron.svg";
 import { ReactComponent as ArrowIcon } from "../../assets/icons/arrow.svg";
 import { ReactComponent as BoltIcon } from "../../assets/icons/bolt.svg";
-import styled from "styled-components";
 import { CSSTransition } from "react-transition-group";
 
-import { NavContext } from "../Navbar/NavbarContext";
 import DropdownItem from "./DropdownItem";
-import Menu from "./Menu";
 import Checkbox from "../Checkbox";
+import { useNavbarContext } from "../Navbar/NavbarContext";
+import { Menu } from "./Menu";
+
+import { Wrapper } from "./styles";
 
 interface IDropdown {
   toggleDark?(): void;
@@ -19,7 +20,7 @@ function Dropdown({ toggleDark }: IDropdown) {
   const [activeMenu, setActiveMenu] = useState("main");
   const [menuHeight, setMenuHeight] = useState<any>(null);
   const dropdownRef = useRef<any>(null);
-  const { handleOpen } = useContext(NavContext);
+  const { handleOpen } = useNavbarContext();
 
   useEffect(() => {
     setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
@@ -30,19 +31,10 @@ function Dropdown({ toggleDark }: IDropdown) {
 
   // TODO: get this value dynamic
   function calcHeight(el: HTMLElement) {
-    switch (activeMenu) {
-      case "main":
-        setMenuHeight(245);
-        break;
-      case "settings":
-        setMenuHeight(300);
-        break;
-      case "items":
-        setMenuHeight(300);
-        break;
-      default:
-        setMenuHeight(menuHeight);
-        break;
+    if (activeMenu === "main") {
+      setMenuHeight(245);
+    } else {
+      setMenuHeight(300);
     }
   }
 
@@ -136,20 +128,3 @@ function Dropdown({ toggleDark }: IDropdown) {
 }
 
 export default Dropdown;
-
-const Wrapper = styled.div`
-  position: absolute;
-  top: 58px;
-  width: 300px;
-  padding: 1rem;
-  transform: translateX(-45%);
-  background-color: ${(props) => props.theme.colors.primary};
-  border: var(--border);
-  border-radius: var(--border-radius);
-  transition: height var(--speed) ease;
-  overflow: hidden;
-
-  .menu {
-    height: 100%;
-  }
-`;

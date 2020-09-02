@@ -1,12 +1,12 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useContext, ReactNode } from "react";
 
 type NavbarContext = {
   open?: boolean;
-  handleOpen?(event?: any): any;
+  handleOpen?(): void;
 };
 
 interface INavbarContext {
-  children: any;
+  children: ReactNode;
 }
 
 export const NavContext = createContext<NavbarContext>({});
@@ -26,3 +26,7 @@ function NavbarContext({ children }: INavbarContext) {
 }
 
 export default NavbarContext;
+
+export function useNavbarContext() {
+  return useContext(NavContext);
+}
