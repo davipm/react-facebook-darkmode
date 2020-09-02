@@ -1,27 +1,6 @@
-import React, { useContext } from "react";
 import styled from "styled-components";
 
-import { NavContext } from "./NavbarContext";
-
-interface INavItem {
-  icon: JSX.Element;
-  children?: JSX.Element[] | JSX.Element;
-}
-
-function NavItem({ icon, children }: INavItem) {
-  const { open, handleOpen } = useContext(NavContext);
-
-  return (
-    <Wrapper>
-      <NavButton onClick={handleOpen}>{icon}</NavButton>
-      {open && children}
-    </Wrapper>
-  );
-}
-
-export default NavItem;
-
-const Wrapper = styled.li`
+export const Wrapper = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,11 +22,9 @@ export const NavButton = styled.button`
   transition: filter 300ms;
   outline: 0;
   cursor: pointer;
-
   &:hover {
     filter: brightness(1.2);
   }
-
   svg {
     fill: ${(props) => props.theme.colors.textColor};
     width: 20px;
