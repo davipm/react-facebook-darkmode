@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { NavButton } from "../../Navbar/NavItem/styles";
 
 export const MenuItem = styled.button`
@@ -30,12 +30,20 @@ export const MenuItem = styled.button`
     }
   }
 
+  .icon-right {
+    margin-left: auto;
+    
+    svg {
+      fill: ${(props) => props.theme.colors.textColor};
+    }
+  }
+
   &:hover {
     color: ${(props) => props.theme.colors.primary};
     background-color: ${(props) => props.theme.colors.textColor};
-  }
-
-  .icon-right {
-    margin-left: auto;
-  }
+    
+    svg {
+      fill: ${(props) => props.theme.title === 'light' ? '#F2F3F5' : '#151616'};
+    }
+  }  
 `;

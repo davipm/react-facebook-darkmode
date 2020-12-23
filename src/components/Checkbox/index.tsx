@@ -7,7 +7,7 @@ interface ICheckbox {
   toggleDark?(): void;
 }
 
-function Checkbox({ toggleDark }: ICheckbox) {
+export default function Checkbox({ toggleDark }: ICheckbox) {
   const { title } = useContext(ThemeContext);
 
   return (
@@ -22,5 +22,3 @@ function Checkbox({ toggleDark }: ICheckbox) {
     </>
   );
 }
-
-export default Checkbox;

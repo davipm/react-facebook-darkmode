@@ -17,7 +17,7 @@ import NavItem from "./components/Navbar/NavItem";
 import Dropdown from "./components/Dropdown";
 import NavbarContext from "./components/Navbar/NavbarContext";
 
-function App() {
+export default function App() {
   const [theme, setTheme] = usePersistedState<DefaultTheme>("theme", light);
 
   function toggleTheme() {
@@ -41,5 +41,3 @@ function App() {
     </ThemeProvider>
   );
 }
-
-export default App;

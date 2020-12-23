@@ -7,11 +7,11 @@ interface IDropdownItem {
   leftIcon?: JSX.Element;
   rightIcon?: JSX.Element;
   goToMenu?: string;
-  children?: any;
-  setActiveMenu?(menu: any): any;
+  children?: React.ReactNode;
+  setActiveMenu?(menu: string): void;
 }
 
-function DropdownItem({
+export default function DropdownItem({
   leftIcon,
   rightIcon,
   children,
@@ -26,5 +26,3 @@ function DropdownItem({
     </MenuItem>
   );
 }
-
-export default DropdownItem;

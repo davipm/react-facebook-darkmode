@@ -1,11 +1,11 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { useNavbarContext } from "../NavbarContext";
 import { Wrapper, NavButton } from "./styles";
 
 interface INavItem {
   icon: JSX.Element;
-  children?: JSX.Element[] | JSX.Element;
+  children?: ReactNode;
 }
 
 function NavItem({ icon, children }: INavItem) {

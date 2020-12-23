@@ -12,53 +12,46 @@ import { Menu } from "./Menu";
 
 import { Wrapper } from "./styles";
 
-interface IDropdown {
+interface Props {
   toggleDark?(): void;
 }
 
-function Dropdown({ toggleDark }: IDropdown) {
-  const [activeMenu, setActiveMenu] = useState("main");
-  const [menuHeight, setMenuHeight] = useState<any>(null);
+export default function Dropdown({ toggleDark }: Props) {
+  const [activeMenu, setActiveMenu] = useState<string>("main");
+  const [menuHeight, setMenuHeight] = useState<number | null>(null);
   const dropdownRef = useRef<any>(null);
   const { handleOpen } = useNavbarContext();
 
   useEffect(() => {
-    setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
-
+    setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
     window.addEventListener("click", closeDropdown);
     return () => window.removeEventListener("click", closeDropdown);
   }, []);
 
-  // TODO: get this value dynamic
   function calcHeight(el: HTMLElement) {
-    if (activeMenu === "main") {
-      setMenuHeight(245);
-    } else {
-      setMenuHeight(300);
-    }
+    const height = el.offsetHeight
+    setMenuHeight(height)
   }
 
-  function closeDropdown(e: any) {
+  function closeDropdown(e: { target: React.ReactNode }) {
     if (dropdownRef.current?.contains(e.target)) return;
-    if (handleOpen) {
-      handleOpen();
-    }
+    if (handleOpen) handleOpen();
   }
 
   return (
-    <Wrapper style={{ height: menuHeight }} ref={dropdownRef}>
+    <Wrapper menuHeight={menuHeight} ref={dropdownRef}>
       <CSSTransition
         in={activeMenu === "main"}
         timeout={500}
         classNames="menu-primary"
-        onEnter={calcHeight}
         unmountOnExit
+        onEnter={calcHeight}
       >
         <Menu>
           <DropdownItem>My Profile</DropdownItem>
           <DropdownItem
             leftIcon={<CogIcon />}
-            rightIcon={<ChevronIcon height={20} width={20} fill="#fff" />}
+            rightIcon={<ChevronIcon height={20} width={20} />}
             goToMenu="settings"
             setActiveMenu={(event) => setActiveMenu(event)}
           >
@@ -126,5 +119,3 @@ function Dropdown({ toggleDark }: IDropdown) {
     </Wrapper>
   );
 }
-
-export default Dropdown;
