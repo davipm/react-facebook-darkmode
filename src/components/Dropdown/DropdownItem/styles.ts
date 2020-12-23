@@ -32,7 +32,7 @@ export const MenuItem = styled.button`
 
   .icon-right {
     margin-left: auto;
-    
+
     svg {
       fill: ${(props) => props.theme.colors.textColor};
     }
@@ -41,9 +41,9 @@ export const MenuItem = styled.button`
   &:hover {
     color: ${(props) => props.theme.colors.primary};
     background-color: ${(props) => props.theme.colors.textColor};
-    
+
     svg {
-      fill: ${(props) => props.theme.title === 'light' ? '#F2F3F5' : '#151616'};
+      fill: ${(props) => props.theme.colors.primary};
     }
-  }  
+  }
 `;
