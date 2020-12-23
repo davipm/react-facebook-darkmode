@@ -29,8 +29,9 @@ export default function Dropdown({ toggleDark }: Props) {
   }, []);
 
   function calcHeight(el: HTMLElement) {
-    const height = el.offsetHeight
-    setMenuHeight(height)
+    //const height = el.offsetHeight
+    //setMenuHeight(height)
+    setMenuHeight(activeMenu === 'main' ? 245 : 300)
   }
 
   function closeDropdown(e: { target: React.ReactNode }) {
